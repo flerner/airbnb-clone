@@ -22,7 +22,7 @@ export default function RootLayout({
       <body className={font.className}>
         {/* try deleting clientonly and check if it still works */}
         <ClientOnly>
-          <Modal isOpen title='Login Modal' />
+          <Modal isOpen title='Login Modal' actionLabel='Submit' />
           <Navbar />
         </ClientOnly>
 
