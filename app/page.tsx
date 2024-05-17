@@ -6,7 +6,6 @@ import EmptyState from './components/EmptyState'
 import ListingCard from './components/listings/ListingCard'
 
 export default async function Home() {
-  const isEmpty = true
   const listings = await getListings()
   const currentUser = await getCurrentUser()
   if (listings?.length == 0) {
