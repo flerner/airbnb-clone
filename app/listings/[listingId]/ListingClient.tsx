@@ -5,8 +5,7 @@ import ListingInfo from '@/app/components/listings/ListingInfo'
 import ListingReservation from '@/app/components/listings/ListingReservation'
 import { categories } from '@/app/components/navbar/Categories'
 import useLoginModal from '@/app/hooks/useLoginModal'
-import { SafeListing, SafeUser } from '@/app/types'
-import { Reservation } from '@prisma/client'
+import { SafeListing, SafeReservation, SafeUser } from '@/app/types'
 import axios from 'axios'
 import {
   differenceInCalendarDays,
@@ -25,7 +24,7 @@ const initialDateRange = {
 }
 
 interface ListingClientProps {
-  reservations?: Reservation[]
+  reservations: SafeReservation[]
   listing: SafeListing & {
     user: SafeUser
   }
@@ -37,11 +36,11 @@ const ListingClient: React.FC<ListingClientProps> = ({
   currentUser,
   reservations = [],
 }) => {
+  console.log(reservations)
   const loginModal = useLoginModal()
   const router = useRouter()
-
   const disabledDates = useMemo(() => {
-    let dates: Date[]
+    let dates: Date[] = []
 
     reservations.forEach((reservation) => {
       const range = eachDayOfInterval({
@@ -50,9 +49,9 @@ const ListingClient: React.FC<ListingClientProps> = ({
       })
 
       dates = [...dates, ...range]
-
-      return dates
     })
+
+    return dates
   }, [reservations])
 
   const [isLoading, setIsLodaing] = useState(false)
@@ -64,7 +63,6 @@ const ListingClient: React.FC<ListingClientProps> = ({
       return loginModal.onOpen()
     }
     setIsLodaing(true)
-
     axios
       .post('/api/reservations', {
         totalPrice,
@@ -84,7 +82,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
       .finally(() => {
         setIsLodaing(false)
       })
-  }, [])
+  }, [dateRange, totalPrice, listing?.id, router, currentUser, loginModal])
 
   useEffect(() => {
     if (dateRange.startDate && dateRange.endDate) {
