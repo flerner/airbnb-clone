@@ -31,7 +31,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
   const { getByValue } = useCountries()
   const location = getByValue(data.locationValue)
   const handleCancel = useCallback(
-    () => (e: React.MouseEvent<HTMLButtonElement>) => {
+    (e: React.MouseEvent<HTMLButtonElement>) => {
       e.stopPropagation()
       if (disabled) {
         return
