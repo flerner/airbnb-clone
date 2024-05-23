@@ -8,7 +8,7 @@ import Container from '../components/Container'
 import ListingCard from '../components/listings/ListingCard'
 
 interface FavouritesClientProps {
-  currentUser?: SafeUser
+  currentUser?: SafeUser | null
   listings: SafeListing[]
 }
 
