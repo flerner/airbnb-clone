@@ -22,10 +22,10 @@ const Button: React.FC<ButtonProps> = ({
     <button
       onClick={onClick}
       disabled={disabled}
-      className={`relative disabled:opacity-70 disabled:cursor-not-allowed rounded-lg hover:opacity-80 transition w-full text-white
-  ${outline ? 'bg-white' : 'bg-rose-500'}
-  ${outline ? 'border-black' : 'bg-rose-500'}
-  ${outline ? 'text-black' : 'bg-rose-500'}
+      className={`relative disabled:opacity-70 disabled:cursor-not-allowed rounded-lg hover:opacity-80 transition w-full 
+  ${outline ? 'bg-white' : 'bg-rose-500 text-white'}
+  ${outline ? 'border-black' : 'bg-rose-500 text-white'}
+  ${outline ? 'text-black' : 'bg-rose-500 text-white'}
   ${small ? 'py-1' : 'py-3'}
   ${small ? 'text-sm' : 'text-md'}
   ${small ? 'font-light' : 'font-semibold'}
