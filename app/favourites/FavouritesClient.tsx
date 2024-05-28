@@ -9,7 +9,7 @@ import ListingCard from '../components/listings/ListingCard'
 
 interface FavouritesClientProps {
   currentUser?: SafeUser | null
-  listings: SafeListing[]
+  listings?: SafeListing[] | undefined
 }
 
 const FavouritesClient: React.FC<FavouritesClientProps> = ({
@@ -33,7 +33,7 @@ const FavouritesClient: React.FC<FavouritesClientProps> = ({
       2xl:grid-cols-6
       gap-8'
       >
-        {listings.map((listing) => (
+        {listings?.map((listing) => (
           <ListingCard
             currentUser={currentUser}
             key={listing.id}
